@@ -5,8 +5,7 @@
     "require": {
         "php": "^8.0",
         "guzzlehttp/guzzle": "^7.8",
-        "illuminate/http": "^11.1",
-        "illuminate/support": "^11.1"
+        
     },
     "license": "MIT",
     "autoload": {
