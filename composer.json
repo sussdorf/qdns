@@ -1,0 +1,23 @@
+{
+    "name": "dnic/qdns",
+    "description": "A Libary for working with PowerdnsAPI",
+    "type": "library",
+    "require": {
+        "php": "^8.0",
+        "guzzlehttp/guzzle": "^7.8",
+        "illuminate/http": "^11.1",
+        "illuminate/support": "^11.1"
+    },
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Qdns\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sussdorf",
+            "email": "sussdorf@dotnic.de"
+        }
+    ]
+}
