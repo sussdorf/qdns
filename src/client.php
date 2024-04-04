@@ -15,10 +15,11 @@ class ApiClient
     private string $apiUrl;
     private $httpClient;
 
-    public function __construct(string $token, $httpClient = null)
+    public function __construct(string $token, $httpClient = null, string $url)
     {
         $this->apiToken = $token;
         $this->setApiClient($httpClient);
+        $this->apiUrl = $url;
     }
     public function setApiClient(Client $httpClient = null)
     {
@@ -63,7 +64,7 @@ class ApiClient
                     'headers' => [
                         'Content-Type' => 'application/json',
                         'Accept' => 'application/json',
-                        'User-Agent' => 'fireapi-php-Client',
+                        'User-Agent' => 'Qdns-Client',
                         'X-API-Key' => $this->apiToken,
                     ],
                     'json' => $params,
@@ -74,7 +75,7 @@ class ApiClient
                     'headers' => [
                         'Content-Type' => 'application/json',
                         'Accept' => 'application/json',
-                        'User-Agent' => 'fireapi-php-Client',
+                        'User-Agent' => 'Qdns-Client',
                         'X-API-Key' => $this->apiToken,
                     ],
                     'json' => $params,
@@ -85,7 +86,7 @@ class ApiClient
                     'headers' => [
                         'Content-Type' => 'application/x-www-form-urlencoded',
                         'Accept' => 'application/json',
-                        'User-Agent' => 'fireapi-php-Client',
+                        'User-Agent' => 'Qdns-Client',
                         'X-API-Key' => $this->apiToken,
                     ],
                     'json' => $params,
