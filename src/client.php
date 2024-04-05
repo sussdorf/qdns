@@ -163,7 +163,7 @@ class ApiClient
     public function zone(): ZoneController
     {
         if (!$this->zonecontroller) {
-            $this->zonecontroller = new Zonecontroller($this);
+            $this->zonecontroller = new ZoneController($this);
         }
 
         return $this->zonecontroller;
