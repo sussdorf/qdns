@@ -7,6 +7,7 @@ use GuzzleHttp\Exception\GuzzleException;
 use Psr\Http\Message\ResponseInterface;
 use Qdns\Exception\ParameterException;
 use Qdns\Controller\ZoneController;
+use Qdns\Controller\RecordController;
 
 class ApiClient
 {
@@ -158,7 +159,7 @@ class ApiClient
     }
 
     private $zonecontroller;
-
+    private $recordcontroller;
     /**
      * @return ZoneController
      */
@@ -169,5 +170,13 @@ class ApiClient
         }
 
         return $this->zonecontroller;
+    }
+    public function record(): RecordController
+    {
+        if (!$this->recordcontroller) {
+            $this->recordcontroller = new RecordController($this);
+        }
+
+        return $this->recordcontroller;
     }
 }
