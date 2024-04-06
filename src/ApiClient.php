@@ -15,7 +15,7 @@ class ApiClient
     private string $apiUrl;
     private $httpClient;
 
-    public function __construct(string $token, $httpClient = null, string $url)
+    public function __construct(string $token, string $url, $httpClient = null,)
     {
         $this->apiToken = $token;
         $this->setApiClient($httpClient);
@@ -46,17 +46,19 @@ class ApiClient
     {
         $url = $this->apiUrl . $actionPath;
 
-        if (!is_array($params)) {
-            throw new ParameterException();
-        }
 
-        $params['X-API-Key'] = $this->apiToken;
 
         switch ($method) {
             case 'GET':
                 return $this->getApiClient()->get($url, [
                     'verify' => false,
-                    'query' => $params,
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                        'User-Agent' => 'Qdns-Client',
+                        'X-API-Key' => $this->apiToken,
+                    ],
+                    'json' => $params,
                 ]);
             case 'POST':
                 return $this->getApiClient()->post($url, [
