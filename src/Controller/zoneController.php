@@ -4,7 +4,7 @@ namespace Qdns\Controller;
 
 use Qdns\ApiClient;
 use Qdns\Helper;
-use Qdns\APIResponse;
+use Qdns\ApiResponse;
 
 class ZoneController
 {
@@ -23,7 +23,7 @@ class ZoneController
     public function listZones()
     {
         $response = $this->apiclient->get('/api/v1/servers/localhost/zones');
-        return new APIResponse($response);
+        return new ApiResponse($response);
     }
     /*
         List a single  Zones from given Server
@@ -33,7 +33,7 @@ class ZoneController
     public function listZone($zone)
     {
         $response = $this->apiclient->get('/api/v1/servers/localhost/zones/' . Helper::canonical($zone));
-        return new APIResponse($response);
+        return new ApiResponse($response);
     }
     /*
         Delete a single  Zones from given Server
@@ -43,6 +43,6 @@ class ZoneController
     public function deleteZone($zone)
     {
         $response = $this->apiclient->delete('/api/v1/servers/localhost/zones/' . Helper::canonical($zone));
-        return new APIResponse($response);
+        return new ApiResponse($response);
     }
 }
