@@ -101,9 +101,9 @@ class ApiClient
     private function processRequest(ResponseInterface $response)
     {
         $response = $response->getBody()->__toString();
-        $result = json_decode($response);
+
         if (json_last_error() == JSON_ERROR_NONE) {
-            return $result;
+            return $response;
         } else {
             return $response;
         }

@@ -4,7 +4,7 @@ namespace Qdns\Controller;
 
 use Qdns\ApiClient;
 use Qdns\Helper;
-
+use Qdns\ApiResponse;
 
 class ZoneController
 {
