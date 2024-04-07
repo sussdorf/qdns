@@ -16,32 +16,50 @@ class RecordController
     }
 
     /*
-        List all Zones from given Server
+        Add Record to given Zone
 
         @return as json Object 
     */
-    public function listZones()
-    {
-        return $this->apiclient->get('api/v1/servers/localhost/zones');
-    }
-    /*
-        List a single  Zones from given Server
 
-        @return as json Object 
-    */
-    public function listZone($zone)
+    public function addRecord($zone, $name, $type, $ttl, $content)
     {
-
-        return $this->apiclient->get('api/v1/servers/localhost/zones/' . Helper::canonical($zone));
+        $param = [
+            'rrsets' => [
+                [
+                    'name' => $name . '.',
+                    'type' => $type,
+                    'ttl' => $ttl,
+                    'changetype' => "REPLACE",
+                    'records' => [
+                        [
+                            'content' => $content,
+                            'disabled' => false
+                        ]
+                    ]
+                ]
+            ]
+        ];
+        return $this->apiclient->patch('api/v1/servers/localhost/zones/' . Helper::canonical($zone), $param);
     }
     /*
         Delete a single  Zones from given Server
 
         @return a no content
     */
-    public function deleteZone($zone)
+    public function deleteRecord($zone, $name, $type)
     {
+        $param = [
+            'rrsets' => [
+                [
+                    'name' => $name . '.',
+                    'type' => $type,
+                    'changetype' => "DELETE",
 
-        return $this->apiclient->delete('api/v1/servers/localhost/zones/' . Helper::canonical($zone));
+                ]
+            ]
+        ];
+
+
+        return $this->apiclient->patch('api/v1/servers/localhost/zones/' . Helper::canonical($zone));
     }
 }
