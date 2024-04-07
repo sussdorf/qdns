@@ -83,6 +83,17 @@ class ApiClient
                     ],
                     'json' => $params,
                 ]);
+            case 'PATCH':
+                return $this->getApiClient()->put($url, [
+                    'verify' => false,
+                    'headers' => [
+                        'Content-Type' => 'application/json',
+                        'Accept' => 'application/json',
+                        'User-Agent' => 'Qdns-Client',
+                        'X-API-Key' => $this->apiToken,
+                    ],
+                    'json' => $params,
+                ]);
             case 'DELETE':
                 return $this->getApiClient()->delete($url, [
                     'verify' => false,
